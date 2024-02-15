@@ -9,7 +9,6 @@ body {
   font-weight: 700;
   text-transform: uppercase;
   font-size: 14px;
-  box-sizing: border-box;
   line-height: 1;
 }
 
@@ -83,7 +82,8 @@ p {
   transform-origin: top;
   /* animation: boxmove 1s; */
   /* animation-iteration-count: 1; */
-  transform: rotateX(180deg);
+
+  /* transform: rotateX(180deg); */
 }
 @keyframes boxmove {
   from {
@@ -107,10 +107,11 @@ p {
   position: absolute;
   width: 100%;
   height: 100%;
-  top: 0px;
+  top: 1px;
   text-align: center;
   z-index: -10;
   border-bottom: 4px solid hsl(234, 17%, 12%);
+  box-sizing: border-box;
 }
 
 .lower-box-back {
@@ -127,6 +128,8 @@ p {
   flex-direction: column;
   justify-content: end;
   z-index: -10;
+  border-top: 3px solid hsl(234, 17%, 12%);
+  box-sizing: border-box;
 }
 
 .flip-box-back {
@@ -137,6 +140,7 @@ p {
   flex-direction: column;
   justify-content: start;
   border-bottom: 4px solid hsl(234, 17%, 12%);
+  box-sizing: border-box;
 }
 .flip-box-lower-number {
   clip-path: inset(50% 0% 0% 0%);
@@ -152,10 +156,11 @@ p {
   flex-direction: column;
   justify-content: end;
   transform: rotateX(180deg);
+  box-sizing: border-box;
 }
 .flip-box-upper-number {
   clip-path: inset(0% 0% 50% 0%);
-  margin-bottom: -25px;
+  margin-bottom: -24px;
 }
 
 .center-1,
@@ -220,11 +225,11 @@ p {
   }
 
   .flip-box-lower-number {
-    margin-top: -15px;
+    margin-top: -14px;
   }
 
   .flip-box-upper-number {
-    margin-bottom: -15px;
+    margin-bottom: -14px;
   }
 
   p {
@@ -259,11 +264,11 @@ p {
   }
 
   .flip-box-lower-number {
-    margin-top: -35px;
+    margin-top: -34px;
   }
 
   .flip-box-upper-number {
-    margin-bottom: -35px;
+    margin-bottom: -34px;
   }
 
   p {
