@@ -1,7 +1,8 @@
+let launchingDay = new Date("2024-03-15T21:26:00");
+
 // remaining time
 function initializeTime() {
   const timeNow = new Date();
-  const launchingDay = new Date("2024-02-15");
 
   const differenceInMilliseconds = Math.abs(launchingDay - timeNow);
 
@@ -12,13 +13,18 @@ function initializeTime() {
   const minutesLeft = Math.floor((differenceInMilliseconds / (60 * 1000)) % 60);
   const secondsLeft = Math.floor((differenceInMilliseconds / 1000) % 60);
 
+  // TODO:
   if (
     secondsLeft === 0 &&
     minutesLeft === 0 &&
     hoursLeft === 0 &&
     daysLeft === 0
   ) {
-    launchingDay.setDate(launchingDay.getDate() + 10);
+    launchingDay.setDate(new Date().getDate() + 10);
+    launchingDay.setHours(new Date().getHours() + 23);
+    launchingDay.setMinutes(new Date().getMilliseconds() + 58);
+
+    loadFirst();
   }
 
   return {
@@ -126,7 +132,7 @@ $(function () {
       : "";
 
     // hours
-    timeResults.minutesLeft === 0
+    timeResults.secondsLeft === 0 && timeResults.minutesLeft === 0
       ? changeValue(
           "flip-box-inner-hours",
           "#hours-number-1",
@@ -138,6 +144,8 @@ $(function () {
       : "";
 
     // days
+    timeResults.secondsLeft === 0 &&
+    timeResults.minutesLeft === 0 &&
     timeResults.hoursLeft === 0
       ? changeValue(
           "flip-box-inner-days",
