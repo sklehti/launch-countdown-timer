@@ -1,4 +1,5 @@
 body {
+  position: fixed;
   background-color: hsl(235, 16%, 14%);
   padding: 0;
   margin: 0;
