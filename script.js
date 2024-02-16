@@ -1,5 +1,3 @@
-let launchingDay = new Date("2024-03-15T21:26:00");
-
 // remaining time
 function initializeTime() {
   const timeNow = new Date();
@@ -13,20 +11,6 @@ function initializeTime() {
   const minutesLeft = Math.floor((differenceInMilliseconds / (60 * 1000)) % 60);
   const secondsLeft = Math.floor((differenceInMilliseconds / 1000) % 60);
 
-  // TODO:
-  if (
-    secondsLeft === 0 &&
-    minutesLeft === 0 &&
-    hoursLeft === 0 &&
-    daysLeft === 0
-  ) {
-    launchingDay.setDate(new Date().getDate() + 10);
-    launchingDay.setHours(new Date().getHours() + 23);
-    launchingDay.setMinutes(new Date().getMilliseconds() + 58);
-
-    loadFirst();
-  }
-
   return {
     secondsLeft: secondsLeft,
     minutesLeft: minutesLeft,
@@ -35,50 +19,39 @@ function initializeTime() {
   };
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  loadFirst();
-});
+function changeValue(
+  boxpage,
+  number1,
+  number2,
+  number3,
+  number4,
+  displayValue
+) {
+  $("#" + boxpage).css("animation", "boxmove 999ms");
 
-function loadFirst() {
-  const timeResults = initializeTime();
+  $(number1).text(displayValue);
+  $(number3).text(displayValue);
 
-  let displayValue1 =
-    timeResults.secondsLeft < 10
-      ? "0" + timeResults.secondsLeft
-      : timeResults.secondsLeft;
-  let displayValue2 =
-    timeResults.minutesLeft < 10
-      ? "0" + timeResults.minutesLeft
-      : timeResults.minutesLeft;
-  let displayValue3 =
-    timeResults.hoursLeft < 10
-      ? "0" + timeResults.hoursLeft
-      : timeResults.hoursLeft;
-  let displayValue4 =
-    timeResults.daysLeft < 10
-      ? "0" + timeResults.daysLeft
-      : timeResults.daysLeft;
+  $(number2)
+    .delay("slow")
+    .queue(function (next) {
+      $(this).text(displayValue);
+      $(number4).text(displayValue);
 
-  document.getElementById("seconds-number-2").innerHTML = displayValue1;
-  document.getElementById("seconds-number-4").innerHTML = displayValue1;
+      document.getElementById(boxpage).style.animationName = "none";
 
-  document.getElementById("minutes-number-2").innerHTML = displayValue2;
-  document.getElementById("minutes-number-4").innerHTML = displayValue2;
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          document.getElementById(boxpage).style.animationName = "";
+        }, 0);
+      });
 
-  document.getElementById("hours-number-2").innerHTML = displayValue3;
-  document.getElementById("hours-number-4").innerHTML = displayValue3;
-
-  document.getElementById("days-number-2").innerHTML = displayValue4;
-  document.getElementById("days-number-4").innerHTML = displayValue4;
+      next();
+    });
 }
 
-$(function () {
-  $(".main-layout").queue(function (n) {
-    $(this).fadeIn(5000);
-    n();
-  });
-
-  // seconds
+//intervals
+function intervals() {
   window.setInterval(function () {
     const timeResults = initializeTime();
 
@@ -110,24 +83,17 @@ $(function () {
         ? "0" + timeResults.daysLeft
         : timeResults.daysLeft;
 
-    changeValue(
-      "flip-box-inner-seconds",
-      "#seconds-number-1",
-      "#seconds-number-2",
-      "#seconds-number-3",
-      "#seconds-number-4",
-      displayValue1
-    );
-
-    // minutes
-    timeResults.secondsLeft === 0
+    // days
+    timeResults.secondsLeft === 0 &&
+    timeResults.minutesLeft === 0 &&
+    timeResults.hoursLeft === 0
       ? changeValue(
-          "flip-box-inner-minutes",
-          "#minutes-number-1",
-          "#minutes-number-2",
-          "#minutes-number-3",
-          "#minutes-number-4",
-          displayValue2
+          "flip-box-inner-days",
+          "#days-number-1",
+          "#days-number-2",
+          "#days-number-3",
+          "#days-number-4",
+          displayValue4
         )
       : "";
 
@@ -143,49 +109,87 @@ $(function () {
         )
       : "";
 
-    // days
-    timeResults.secondsLeft === 0 &&
-    timeResults.minutesLeft === 0 &&
-    timeResults.hoursLeft === 0
+    // minutes
+    timeResults.secondsLeft === 0
       ? changeValue(
-          "flip-box-inner-days",
-          "#days-number-1",
-          "#days-number-2",
-          "#days-number-3",
-          "#days-number-4",
-          displayValue4
+          "flip-box-inner-minutes",
+          "#minutes-number-1",
+          "#minutes-number-2",
+          "#minutes-number-3",
+          "#minutes-number-4",
+          displayValue2
         )
       : "";
+
+    // seconds
+    changeValue(
+      "flip-box-inner-seconds",
+      "#seconds-number-1",
+      "#seconds-number-2",
+      "#seconds-number-3",
+      "#seconds-number-4",
+      displayValue1
+    );
   }, 1000);
+}
 
-  function changeValue(
-    boxpage,
-    number1,
-    number2,
-    number3,
-    number4,
-    displayValue
-  ) {
-    $("#" + boxpage).css("animation", "boxmove 999ms");
+document.addEventListener("DOMContentLoaded", function () {
+  loadFirst();
+});
 
-    $(number1).text(displayValue);
-    $(number3).text(displayValue);
+function loadFirst() {
+  launchingDay = new Date().setDate(new Date().getDate() + 10);
+  const timeResults = initializeTime();
+  console.log(timeResults);
 
-    $(number2)
-      .delay("slow")
-      .queue(function (next) {
-        $(this).text(displayValue);
-        $(number4).text(displayValue);
+  // TODO:
+  let displayValue1 = 59;
+  let displayValue2 = 59;
+  let displayValue3 = 23;
+  let displayValue4 = 9;
 
-        document.getElementById(boxpage).style.animationName = "none";
+  changeValue(
+    "flip-box-inner-days",
+    "#days-number-1",
+    "#days-number-2",
+    "#days-number-3",
+    "#days-number-4",
+    displayValue4
+  );
 
-        requestAnimationFrame(() => {
-          setTimeout(() => {
-            document.getElementById(boxpage).style.animationName = "";
-          }, 0);
-        });
+  changeValue(
+    "flip-box-inner-hours",
+    "#hours-number-1",
+    "#hours-number-2",
+    "#hours-number-3",
+    "#hours-number-4",
+    displayValue3
+  );
 
-        next();
-      });
-  }
+  changeValue(
+    "flip-box-inner-minutes",
+    "#minutes-number-1",
+    "#minutes-number-2",
+    "#minutes-number-3",
+    "#minutes-number-4",
+    displayValue2
+  );
+
+  changeValue(
+    "flip-box-inner-seconds",
+    "#seconds-number-1",
+    "#seconds-number-2",
+    "#seconds-number-3",
+    "#seconds-number-4",
+    displayValue1
+  );
+}
+
+$(function () {
+  $(".main-layout").queue(function (n) {
+    $(this).fadeIn(2000);
+    n();
+  });
+
+  intervals();
 });
