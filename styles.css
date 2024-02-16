@@ -270,7 +270,7 @@ p {
 
   .some-links > img {
     width: 19px;
-    width: 19px;
+    height: auto;
   }
 }
 
