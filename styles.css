@@ -19,6 +19,7 @@ h1 {
   padding: 0 30px;
   padding-bottom: 60px;
   text-align: center;
+  line-height: 1.5;
 }
 
 p {
@@ -53,7 +54,6 @@ p {
 .timer-layout {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-
   display: flex;
   justify-content: space-around;
 }
@@ -62,7 +62,7 @@ p {
   margin-top: 50px;
   perspective: 1000px;
   font-size: 50px;
-  border-radius: 5px;
+  border-radius: 7px;
   width: 110px;
   height: 50px;
   background-color: hsl(236, 21%, 26%);
@@ -111,7 +111,7 @@ p {
 .lower-box-back {
   position: absolute;
   font-size: 50px;
-  border-radius: 5px;
+  border-radius: 7px;
   width: 110px;
   height: 50px;
   margin-top: -49px;
@@ -122,14 +122,14 @@ p {
   flex-direction: column;
   justify-content: end;
   z-index: -10;
-  border-top: 3px solid hsl(234, 17%, 12%);
+  border-top: 4px solid hsl(234, 17%, 12%);
   box-sizing: border-box;
 }
 
 .flip-box-back {
   background-color: hsl(236, 21%, 26%);
   color: hsl(345, 95%, 68%);
-  border-radius: 5px;
+  border-radius: 7px;
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -143,8 +143,8 @@ p {
 
 .flip-box-front {
   background-color: hsl(237, 20%, 22%);
-  border-top: 3px solid hsl(234, 17%, 12%);
-  border-radius: 5px;
+  border-top: 4px solid hsl(234, 17%, 12%);
+  border-radius: 7px;
   color: hsl(345, 95%, 68%);
   display: flex;
   flex-direction: column;
@@ -186,6 +186,10 @@ p {
 }
 
 .mobile-view {
+  display: none;
+}
+.desktop-view {
+  display: initial;
   position: fixed;
   width: 100%;
   bottom: 0;
@@ -196,10 +200,28 @@ p {
   height: auto;
 }
 
+.some-links {
+  position: absolute;
+  z-index: 100;
+  bottom: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.some-links > img {
+  padding: 0 10px;
+  width: 23px;
+  height: 23px;
+}
+.some-links > img:hover {
+  filter: invert(52%) sepia(49%) saturate(2735%) hue-rotate(315deg)
+    brightness(102%) contrast(104%);
+  cursor: pointer;
+}
+
 @media only screen and (max-width: 600px) {
   h1 {
     font-size: 20px;
-    font-weight: 400;
+    font-weight: 600;
     padding: 0 30px;
     padding-bottom: 40px;
     text-align: center;
@@ -212,13 +234,13 @@ p {
 
   .flip-box {
     font-size: 30px;
-    width: 19vw;
+    width: 18vw;
     height: 40px;
   }
 
   .lower-box-back {
     font-size: 30px;
-    width: 19vw;
+    width: 18vw;
     height: 40px;
     margin-top: -39px;
   }
@@ -235,15 +257,20 @@ p {
     font-size: 7px;
   }
 
-  /* TODO */
-  .pattern-hill {
-    /* position: fixed;
-    width: 100%;
-    height: auto; */
-  }
   .mobile-view {
-    /* position: fixed;
-    width: 20vw; */
+    position: relative;
+    display: initial;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+  }
+  .desktop-view {
+    display: none;
+  }
+
+  .some-links > img {
+    width: 19px;
+    width: 19px;
   }
 }
 
