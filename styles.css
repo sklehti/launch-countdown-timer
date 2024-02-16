@@ -77,7 +77,7 @@ p {
   transition: transform 0.8s;
   transform-style: preserve-3d;
   transform-origin: top;
-  margin-top: 1px;
+  /* margin-top: 1px; */
 }
 @keyframes boxmove {
   from {
@@ -101,11 +101,13 @@ p {
   position: absolute;
   width: 100%;
   height: 100%;
-  top: 0.7px;
+  /* top: 0.7px; */
+  top: 0px;
   text-align: center;
   z-index: -10;
   border-bottom: 4px solid hsl(234, 17%, 12%);
   box-sizing: border-box;
+  border-radius: 7px;
 }
 
 .lower-box-back {
@@ -137,8 +139,8 @@ p {
   box-sizing: border-box;
 }
 .flip-box-lower-number {
-  clip-path: inset(50% 0% 0% 0%);
-  margin-top: -24.9px;
+  clip-path: inset(50.3% 0% 0% 0%);
+  margin-top: -24.8px;
 }
 
 .flip-box-front {
@@ -153,8 +155,8 @@ p {
   box-sizing: border-box;
 }
 .flip-box-upper-number {
-  clip-path: inset(0% 0% 50% 0%);
-  margin-bottom: -24.9px;
+  clip-path: inset(0% 0% 50.3% 0%);
+  margin-bottom: -24.8px;
 }
 
 .center-1,
@@ -246,11 +248,11 @@ p {
   }
 
   .flip-box-lower-number {
-    margin-top: -14.9px;
+    margin-top: -14.8px;
   }
 
   .flip-box-upper-number {
-    margin-bottom: -14.9px;
+    margin-bottom: -14.8px;
   }
 
   p {
@@ -270,7 +272,7 @@ p {
 
   .some-links > img {
     width: 19px;
-    height: auto;
+    height: 19px;
   }
 }
 
@@ -297,15 +299,15 @@ p {
     font-size: 70px;
     width: 140px;
     height: 70px;
-    margin-top: -69px;
+    margin-top: -70px;
   }
 
   .flip-box-lower-number {
-    margin-top: -34.9px;
+    margin-top: -34.8px;
   }
 
   .flip-box-upper-number {
-    margin-bottom: -34.9px;
+    margin-bottom: -34.8px;
   }
 
   p {

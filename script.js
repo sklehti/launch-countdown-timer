@@ -19,6 +19,7 @@ function initializeTime() {
   };
 }
 
+// animation
 function changeValue(
   boxpage,
   number1,
@@ -54,17 +55,6 @@ function changeValue(
 function intervals() {
   window.setInterval(function () {
     const timeResults = initializeTime();
-
-    console.log(
-      timeResults.daysLeft,
-      "days,",
-      timeResults.hoursLeft,
-      "hours,",
-      timeResults.minutesLeft,
-      "minutes,",
-      timeResults.secondsLeft,
-      "seconds"
-    );
 
     let displayValue1 =
       timeResults.secondsLeft < 10
@@ -140,9 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function loadFirst() {
   launchingDay = new Date().setDate(new Date().getDate() + 10);
   const timeResults = initializeTime();
-  console.log(timeResults);
 
-  // TODO:
   let displayValue1 = 59;
   let displayValue2 = 59;
   let displayValue3 = 23;
