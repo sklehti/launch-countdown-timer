@@ -1,3 +1,5 @@
+let launchingDay;
+
 // remaining time
 function initializeTime() {
   const timeNow = new Date();
@@ -74,9 +76,9 @@ function intervals() {
         : timeResults.daysLeft;
 
     // days
-    timeResults.secondsLeft === 0 &&
-    timeResults.minutesLeft === 0 &&
-    timeResults.hoursLeft === 0
+    timeResults.secondsLeft === 59 &&
+    timeResults.minutesLeft === 59 &&
+    timeResults.hoursLeft === 23
       ? changeValue(
           "flip-box-inner-days",
           "#days-number-1",
@@ -88,7 +90,7 @@ function intervals() {
       : "";
 
     // hours
-    timeResults.secondsLeft === 0 && timeResults.minutesLeft === 0
+    timeResults.secondsLeft === 59 && timeResults.minutesLeft === 59
       ? changeValue(
           "flip-box-inner-hours",
           "#hours-number-1",
@@ -100,7 +102,7 @@ function intervals() {
       : "";
 
     // minutes
-    timeResults.secondsLeft === 0
+    timeResults.secondsLeft === 59
       ? changeValue(
           "flip-box-inner-minutes",
           "#minutes-number-1",
